@@ -30,4 +30,14 @@ public class JdbcUserRepository implements UserRepository {
     public List<User> getAllOnlineFriends() {
         return null;
     }
+
+    @Override
+    public User findByUsernameAndPassword(String username, String password) {
+        return null;
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return null;
+    }
 }
