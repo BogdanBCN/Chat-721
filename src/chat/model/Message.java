@@ -6,12 +6,17 @@ public class Message {
     private String text;
     private MessageStatus status;
 
-    public Message(User sender, User receiver, String text) {
+    private int id;
+
+    public Message(User sender, User receiver, String text, int id) {
         this.sender = sender;
         this.receiver = receiver;
         this.text = text;
         this.status = MessageStatus.PENDING;
+        this.id = id;
     }
+
+
 
     public User getSender() {
         return sender;
@@ -43,5 +48,13 @@ public class Message {
 
     public void setStatus(MessageStatus status) {
         this.status = status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
