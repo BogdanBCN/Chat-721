@@ -5,6 +5,7 @@ import chat.model.MessageStatus;
 import chat.model.User;
 import chat.repository.MessageRepository;
 import chat.repository.UserRepository;
+import chat.utils.BadCredentialsException;
 
 import java.util.ArrayList;
 
@@ -17,28 +18,33 @@ public class Server {
         this.messageRepository = messageRepository;
     }
 
-    public String login(String username, String password) {
+    public String login(String username, String password) throws BadCredentialsException {
 
         User user = userRepository.findByUsernameAndPassword(username, password);
-        if (user != null) {
+        if (user == null) {
+            throw new BadCredentialsException("Bad credentials");
+        }
+        else {
             user.setOnline(true);
-            // nach erfolgreichen login, werden alle pending messages zu sent hinzugefugt
-            // variante 1
-            user.getReceivedMessages().addAll(user.getPendingMessages());
-            user.getPendingMessages().clear();
-            for (Message m : user.getReceivedMessages()) {
-                m.setStatus(MessageStatus.SENT);
-                messageRepository.update(m.getId(), m);
-            }
+            transferMessagesOnLogin(user);
+            return "User logged in successfully";
+        }
+    }
 
-            // variante 2
+    public void transferMessagesOnLogin(User user) {
+        // nach erfolgreichen login, werden alle pending messages zu sent hinzugefugt
+        // variante 1
+        user.getReceivedMessages().addAll(user.getPendingMessages());
+        user.getPendingMessages().clear();
+        for (Message m : user.getReceivedMessages()) {
+            m.setStatus(MessageStatus.SENT);
+            messageRepository.update(m.getId(), m);
+        }
+        // variante 2
 //            while (!user.getPendingMessages().isEmpty()) {
 //                Message m = user.getPendingMessages().remove(0);
 //                user.getReceivedMessages().add(m);
 //            }
-            return "User logged in successfully";
-        }
-        return "Incorrect credentials";
     }
 
     public String sendMessage(Message message) {

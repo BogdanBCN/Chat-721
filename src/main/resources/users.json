@@ -1,0 +1,15 @@
+[ {
+  "username" : "ion",
+  "password" : "1234",
+  "friends" : [ ],
+  "receivedMessages" : [ ],
+  "pendingMessages" : [ ],
+  "online" : false
+}, {
+  "username" : "maria",
+  "password" : "12345",
+  "friends" : [ ],
+  "receivedMessages" : [ ],
+  "pendingMessages" : [ ],
+  "online" : true
+} ]

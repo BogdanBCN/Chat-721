@@ -12,6 +12,9 @@ public class User {
     private List<Message> receivedMessages;
     private List<Message> pendingMessages;
 
+    public User() {
+    }
+
     public User(String username, String password, boolean isOnline) {
         this.username = username;
         this.password = password;
@@ -20,9 +23,22 @@ public class User {
         this.receivedMessages = new ArrayList<>();
         this.pendingMessages = new ArrayList<>();
     }
-    public void addFriend(User u){
+
+    public void addFriend(User u) {
         this.getFriends().add(u);
         u.getFriends().add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", isOnline=" + isOnline +
+                ", friends=" + friends +
+                ", receivedMessages=" + receivedMessages +
+                ", pendingMessages=" + pendingMessages +
+                '}';
     }
 
     public String getUsername() {

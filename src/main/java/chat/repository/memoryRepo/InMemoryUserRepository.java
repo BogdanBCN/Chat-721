@@ -25,7 +25,7 @@ public class InMemoryUserRepository implements UserRepository {
 
     private void populateUsers() {
         User user1 = new User("ion", "1234", false);
-        User user2 = new User("maria", "12345", true);
+        User user2 = new User("maria", "12345", false);
         User user3 = new User("popescu", "1234", false);
 
         user1.addFriend(user2);
