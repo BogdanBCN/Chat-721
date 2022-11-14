@@ -60,6 +60,8 @@ public class JSONUserRepository implements UserRepository {
         ObjectMapper mapper = new ObjectMapper();
         try {
             User[] users = mapper.readValue(Paths.get(filepath).toFile(), User[].class);
+            // Variante 2
+            // List<User> usersList = Arrays.asList(mapper.readValue(Paths.get(filepath).toFile(), User[].class));
             for (User u : users) {
                 if (u.getUsername().equals(username)) {
                     return u;

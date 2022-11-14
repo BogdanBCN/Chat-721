@@ -1,0 +1,5 @@
+{
+  "url" : "jdbc:sqlserver://localhost\\SQLEXPRESS;database=chat;encrypt=true;trustServerCertificate=true",
+  "user" : "guest",
+  "password" : "1234"
+}
